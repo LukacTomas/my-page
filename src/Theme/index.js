@@ -2,6 +2,7 @@ import React from "react";
 import { CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "./theme.css";
+import { SayHi } from "./Components/Sayhi";
 
 const theme = createTheme({
   palette: {
@@ -25,6 +26,7 @@ export default function IndexLang({ language, children }) {
       <CssBaseline />
 
       {children}
+      <SayHi />
     </ThemeProvider>
   );
 }
