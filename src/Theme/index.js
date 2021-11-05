@@ -3,6 +3,8 @@ import { CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "./theme.css";
 import { SayHi } from "./Components/Sayhi";
+import { Mouseeffect } from "./Components/Mouseeffect";
+import { Background } from "./Components/Background";
 
 const theme = createTheme({
   palette: {
@@ -26,6 +28,8 @@ export default function IndexLang({ language, children }) {
       <CssBaseline />
 
       {children}
+      <Background />
+      <Mouseeffect />
       <SayHi />
     </ThemeProvider>
   );
