@@ -1,0 +1,266 @@
+@import url("https://fonts.googleapis.com/css2?family=Fruktur&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
+main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.card {
+  background-color: #292a41;
+  border-radius: 1em;
+  cursor: pointer;
+  font-family: "Bebas Neue", cursive;
+  padding: 1.5em;
+  margin: 1em 1.5em;
+  width: 100%;
+  max-width: 350px;
+  -webkit-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.primary {
+  -webkit-box-shadow: 0px 0px 13px -5px #bec925, 5px 0 5px #292a41;
+  box-shadow: 0px 0px 13px -5px #bec925, 5px 0 5px #292a41;
+}
+
+.primary:hover {
+  -webkit-box-shadow: 0px 10px 20px -7px #bec925, 5px 0 15px #292a41;
+  box-shadow: 0px 10px 20px -7px #bec925, 5px 0 15px #292a41;
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.primary .card-title {
+  text-shadow: 0 5px 10px #bec925;
+}
+
+@-webkit-keyframes appear-primary {
+  0% {
+    background: #bec925;
+  }
+  100% {
+    background: #bec925;
+  }
+}
+
+@keyframes appear-primary {
+  0% {
+    background: #bec925;
+  }
+  100% {
+    background: #bec925;
+  }
+}
+
+.primary .card-active {
+  -webkit-animation-name: appear-primary;
+  animation-name: appear-primary;
+}
+
+.primary .card-item:hover .card-title-item {
+  text-shadow: 0 5px 10px #bec925;
+}
+
+.red {
+  -webkit-box-shadow: 0px 0px 13px -5px #ef0e39, 5px 0 5px #292a41;
+  box-shadow: 0px 0px 13px -5px #ef0e39, 5px 0 5px #292a41;
+}
+
+.red:hover {
+  -webkit-box-shadow: 0px 10px 20px -7px #ef0e39, 5px 0 15px #292a41;
+  box-shadow: 0px 10px 20px -7px #ef0e39, 5px 0 15px #292a41;
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.red .card-title {
+  text-shadow: 0 5px 10px #ef0e39;
+}
+
+@-webkit-keyframes appear-red {
+  0% {
+    background: #ef0e39;
+  }
+  100% {
+    background: #ef0e39;
+  }
+}
+
+@keyframes appear-red {
+  0% {
+    background: #ef0e39;
+  }
+  100% {
+    background: #ef0e39;
+  }
+}
+
+.red .card-active {
+  -webkit-animation-name: appear-red;
+  animation-name: appear-red;
+}
+
+.red .card-item:hover .card-title-item {
+  text-shadow: 0 5px 10px #ef0e39;
+}
+
+.blue {
+  -webkit-box-shadow: 0px 0px 13px -5px #0869ad, 5px 0 5px #292a41;
+  box-shadow: 0px 0px 13px -5px #0869ad, 5px 0 5px #292a41;
+}
+
+.blue:hover {
+  -webkit-box-shadow: 0px 10px 20px -7px #0869ad, 5px 0 15px #292a41;
+  box-shadow: 0px 10px 20px -7px #0869ad, 5px 0 15px #292a41;
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.blue .card-title {
+  text-shadow: 0 5px 10px #0869ad;
+}
+
+@-webkit-keyframes appear-blue {
+  0% {
+    background: #0869ad;
+  }
+  100% {
+    background: #0869ad;
+  }
+}
+
+@keyframes appear-blue {
+  0% {
+    background: #0869ad;
+  }
+  100% {
+    background: #0869ad;
+  }
+}
+
+.blue .card-active {
+  -webkit-animation-name: appear-blue;
+  animation-name: appear-blue;
+}
+
+.blue .card-item:hover .card-title-item {
+  text-shadow: 0 5px 10px #0869ad;
+}
+
+.card-title {
+  font-size: 3em;
+  text-align: center;
+}
+
+.card-title-item {
+  padding: 0.25em;
+  font-size: 1.7em;
+}
+
+.card-progress .card-bar {
+  background: #161724;
+  border: 1px solid #161724;
+  border-radius: 2px;
+  display: inline-block;
+  min-height: 5px;
+  min-width: 37px;
+}
+
+.card-active {
+  -webkit-animation-duration: 200ms;
+  animation-duration: 200ms;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+
+.card-bar-one {
+  -webkit-animation-delay: 200ms;
+  animation-delay: 200ms;
+}
+
+.card-bar-two {
+  -webkit-animation-delay: 400ms;
+  animation-delay: 400ms;
+}
+
+.card-bar-three {
+  -webkit-animation-delay: 600ms;
+  animation-delay: 600ms;
+}
+
+.card-bar-four {
+  -webkit-animation-delay: 800ms;
+  animation-delay: 800ms;
+}
+
+.card-bar-five {
+  -webkit-animation-delay: 1000ms;
+  animation-delay: 1000ms;
+}
+
+.card-bar-six {
+  -webkit-animation-delay: 1200ms;
+  animation-delay: 1200ms;
+}
+
+.card-bottom {
+  background: #161724;
+  min-height: 0.75em;
+  margin: 0.5em auto;
+  position: relative;
+  top: 0;
+  left: -1.5em;
+  width: calc(350px);
+}
+
+@media screen and (min-width: 576px) {
+  .card-bottom {
+    border-radius: 0 0 3em 0;
+    width: calc(350px + 1.5em);
+  }
+  .card-bottom::after {
+    background-color: #161724;
+    border-radius: 0 3em 0 0;
+    content: "";
+    display: table;
+    min-height: 0.75em;
+    min-width: 1.5em;
+    position: absolute;
+    top: -0.75em;
+    right: 0;
+    z-index: 5;
+  }
+  .card-bottom::before {
+    background-color: #292a41;
+    border-radius: 0 1.125em 1.125em 0;
+    content: "";
+    display: table;
+    min-height: 0.75em;
+    min-width: 1.5em;
+    position: absolute;
+    top: -0.75em;
+    right: 0.75em;
+    z-index: 10;
+  }
+}
+/*# sourceMappingURL=style.css.map */
