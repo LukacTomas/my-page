@@ -1,7 +1,7 @@
 import React from "react";
 import Particles from "react-tsparticles";
 
-export default function BGParticles() {
+export const BackgroundParticles = () => {
   return (
     <Particles
       //style={{ position: "absolute", top: "0", minHeight: "150vh", zIndex: -1 }}
@@ -79,4 +79,4 @@ export default function BGParticles() {
       }}
     />
   );
-}
+};

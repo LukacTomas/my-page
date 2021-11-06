@@ -5,7 +5,9 @@ import "./theme.css";
 import { SayHi } from "./Components/Sayhi";
 import { Mouseeffect } from "./Components/Mouseeffect";
 import { Background } from "./Components/Background";
-import Particles from './Components/Particles'
+import { BackgroundParticles as Particles } from "./Components/Particles";
+
+
 const theme = createTheme({
   palette: {
     mode: "dark",
