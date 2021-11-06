@@ -1,11 +1,14 @@
 import React from "react";
 import { CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import {
+  SayHi,
+  Mouseeffect,
+  Background,
+  BackgroundParticles as Particles,
+} from "./Components/";
+
 import "./theme.css";
-import { SayHi } from "./Components/Sayhi";
-import { Mouseeffect } from "./Components/Mouseeffect";
-import { Background } from "./Components/Background";
-import { BackgroundParticles as Particles } from "./Components/Particles";
 
 const theme = createTheme({
   palette: {
@@ -42,7 +45,7 @@ const theme = createTheme({
   },
 });
 
-export default function IndexLang({ language, children }) {
+export const Theme = ({ language, children }) => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -54,4 +57,4 @@ export default function IndexLang({ language, children }) {
       <SayHi />
     </ThemeProvider>
   );
-}
+};
