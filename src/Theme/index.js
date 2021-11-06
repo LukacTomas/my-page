@@ -52,8 +52,10 @@ export const Theme = ({ language, children }) => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Navigation />
-      <Routes />
+
+      <Routes>
+        <Navigation />
+      </Routes>
       {children}
       <Background />
       <Particles />

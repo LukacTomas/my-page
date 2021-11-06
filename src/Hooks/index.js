@@ -9,3 +9,14 @@ export const useLanguage = () => {
   }
   return language;
 };
+
+export const useCurrentPage = () => {
+  const location = window.location.pathname;
+  let page = location.split("/").filter((l) => l !== "");
+   if (page.length > 1) {
+     page = page[1];
+   } else {
+     page = "/";
+   }
+  return page;
+};

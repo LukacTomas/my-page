@@ -6,9 +6,10 @@ import {
   Navigate,
 } from "react-router-dom";
 
-export const Routes = () => {
+export const Routes = ({ children }) => {
   return (
     <BrowserRouter>
+      {children}
       <Switch>
         <Route exact={true} path="en/home/" element={<h1>EN HOME</h1>} />
         <Route exact={true} path="en/resume/" element={<h1>EN resume</h1>} />

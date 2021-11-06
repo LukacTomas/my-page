@@ -1,8 +1,8 @@
 import React from "react";
 import MenuItem from "@mui/material/MenuItem";
-import { BrowserRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { styled } from "@mui/system";
-import { useLanguage } from "Hooks";
+import { useLanguage, useCurrentPage } from "Hooks";
 
 const MyLink = styled(Link)({
   color: "white",
@@ -14,15 +14,16 @@ const MyLink = styled(Link)({
 
 export default function Menulinks({ handleClose }) {
   const language = useLanguage();
-  const page = "resume/";
+  const page = useCurrentPage();
+
   return (
-    <BrowserRouter>
+    <>
       <MenuItem disabled={language === "sk"} onClick={handleClose}>
         <MyLink to={`/sk/${page}`}>SK</MyLink>
       </MenuItem>
       <MenuItem disabled={language === "en"} onClick={handleClose}>
         <MyLink to={`/en/${page}`}>EN</MyLink>
       </MenuItem>
-    </BrowserRouter>
+    </>
   );
 }
