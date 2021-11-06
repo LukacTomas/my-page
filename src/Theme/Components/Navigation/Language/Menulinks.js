@@ -1,6 +1,6 @@
 import React from "react";
-import MenuItem from "@mui/material/MenuItem";
-import { Link } from "react-router-dom";
+import {MenuItem, Link} from "@mui/material/";
+
 import { styled } from "@mui/system";
 import { useLanguage, useCurrentPage } from "Hooks";
 
@@ -19,10 +19,10 @@ export default function Menulinks({ handleClose }) {
   return (
     <>
       <MenuItem disabled={language === "sk"} onClick={handleClose}>
-        <MyLink to={`/sk/${page}`}>SK</MyLink>
+        <MyLink href={`/sk/${page}`}>SK</MyLink>
       </MenuItem>
       <MenuItem disabled={language === "en"} onClick={handleClose}>
-        <MyLink to={`/en/${page}`}>EN</MyLink>
+        <MyLink href={`/en/${page}`}>EN</MyLink>
       </MenuItem>
     </>
   );

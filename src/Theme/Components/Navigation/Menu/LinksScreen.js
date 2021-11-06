@@ -11,6 +11,11 @@ export const LinksScreen = () => {
   console.log(pathsForCurrentLanguage);
 
   return pathsForCurrentLanguage.map((path) => (
-    <Link id={path.id} to={path.route} text={`${path.icon} ${path.title}`} />
+    <Link
+      key={path.route}
+      id={path.id}
+      to={path.route}
+      text={`${path.icon} ${path.title}`}
+    />
   ));
 };
