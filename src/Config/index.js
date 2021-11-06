@@ -1,15 +1,15 @@
 export const paths = {
   en: {
-    Home: { route: "/en/home/", icon: "🏠", id: "Home" },
-    //Blog: { route: "/en/blog/", icon: "📚", id: "Blog" },
-    //Course: { route: "/en/course/", icon: "🎓", id: "Course" },
-    Resume: { route: "/en/resume", icon: "📋", id: "Resume" },
+    Home: { route: "/en/home/", icon: "🏠", id: "Home", title:"Home" },
+    //Blog: { route: "/en/blog/", icon: "📚", id: "Blog", title:"Blog"  },
+    //Course: { route: "/en/course/", icon: "🎓", id: "Course", title:"Course" },
+    Resume: { route: "/en/resume", icon: "📋", id: "Resume", title:"Resume" },
   },
   sk: {
-    Domov: { route: "/sk/home/", icon: "🏠", id: "Home" },
+    Domov: { route: "/sk/home/", icon: "🏠", id: "Home", title:"Domov" },
     //Blog: { route: "/sk/blog/", icon: "📚", id: "Blog" },
     //Kurz: { route: "/sk/course/", icon: "🎓", id: "Course" },
-    Resumé: { route: "/sk/resume", icon: "📋", id: "Resume" },
+    Resumé: { route: "/sk/resume", icon: "📋", id: "Resume", title:"Resumé" },
   },
 };
 
