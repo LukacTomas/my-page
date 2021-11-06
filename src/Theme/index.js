@@ -8,6 +8,7 @@ import {
   BackgroundParticles as Particles,
   //Cookieusage,
   Routes,
+  Navigation,
 } from "./Components/";
 
 import "./theme.css";
@@ -51,10 +52,10 @@ export const Theme = ({ language, children }) => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Routes/>
+      <Navigation />
+      <Routes />
       {children}
       <Background />
-
       <Particles />
       <Mouseeffect />
       <SayHi />

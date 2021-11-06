@@ -1,15 +1,17 @@
 import { Background } from "./Background";
-import { Mouseeffect } from "./Mouseeffect";
 import { BackgroundParticles } from "./Particles";
-import { SayHi } from "./Sayhi";
+import { Mouseeffect } from "./Mouseeffect";
 import { Cookieusage } from "./Cookieusage";
+import { Navigation } from "./Navigation";
 import { Routes } from "./Routes";
+import { SayHi } from "./Sayhi";
 
 export {
   Background,
-  Mouseeffect,
   BackgroundParticles,
-  SayHi,
   Cookieusage,
+  Mouseeffect,
+  Navigation,
   Routes,
+  SayHi,
 };
