@@ -14,7 +14,7 @@ export const SayHi = () => {
        
     `,
     `🚀 Hello My Friends. We can skyrocket together 🚀
- My name is Tomas Lukac I want to be Web Developer
+ My name is Tomas Lukac I am a Web Developer
  Write me at lukactv@gmail.com with #🚀together  `
   );
   return <></>;
