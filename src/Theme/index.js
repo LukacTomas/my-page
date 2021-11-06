@@ -7,6 +7,7 @@ import {
   Background,
   BackgroundParticles as Particles,
   Cookieusage,
+  Routes,
 } from "./Components/";
 
 import "./theme.css";
@@ -50,7 +51,7 @@ export const Theme = ({ language, children }) => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-
+      <Routes />
       {children}
       <Background />
       <Cookieusage />
