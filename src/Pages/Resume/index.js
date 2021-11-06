@@ -3,6 +3,9 @@ import { Grid } from "@mui/material";
 import { useLanguage } from "Hooks";
 import { useData } from "./config";
 
+import { LeftPanel } from "./Leftpanel";
+import RightPanel from "./Rightpanel";
+
 const Resume = () => {
   const lang = useLanguage();
 
@@ -19,10 +22,10 @@ const Resume = () => {
         alignItems="flex-start"
       >
         <Grid item xs={12} md={6} lg={4}>
-          LEFT
+          <RightPanel data={data} />
         </Grid>
         <Grid item xs={12} md={6} lg={8}>
-          RIGHT
+          <LeftPanel />
         </Grid>
       </Grid>
     </>
