@@ -6,6 +6,7 @@ import {
   Mouseeffect,
   Background,
   BackgroundParticles as Particles,
+  Cookieusage,
 } from "./Components/";
 
 import "./theme.css";
@@ -51,8 +52,9 @@ export const Theme = ({ language, children }) => {
       <CssBaseline />
 
       {children}
-      <Particles />
       <Background />
+      <Cookieusage />
+      <Particles />
       <Mouseeffect />
       <SayHi />
     </ThemeProvider>
