@@ -37,14 +37,18 @@ const RingOfFire = styled("div")(({ theme }) => ({
       boxShadow: `0 0 20px ${theme.palette.primary.hover}, inset 0 0 5px ${theme.palette.primary.main}`,
     },
     "20%": {
-      boxShadow: `0 0 5px #af2312, inset 0 0 25px #af0160`,
+      boxShadow: `0 0 5px ${theme.palette.ringOfFire.add20.first}, 
+                  inset 0 0 25px ${theme.palette.ringOfFire.add20.second}`,
     },
     "60%": {
-      boxShadow: `0 0 5px #ca2312, inset 0 0 25px #ca00a0`,
+      boxShadow: `0 0 5px ${theme.palette.ringOfFire.add60.first}, 
+                  inset 0 0 25px ${theme.palette.ringOfFire.add60.second}`,
     },
     "80%": {
-      boxShadow: `0 0 5px #aa0055, inset 0 0 25px #ca0050`,
+      boxShadow: `0 0 5px ${theme.palette.ringOfFire.add80.first}, 
+                  inset 0 0 25px ${theme.palette.ringOfFire.add80.second}`,
     },
+
     "100%": {
       boxShadow: `0 0 20px ${theme.palette.primary.hover}, inset 0 0 5px ${theme.palette.primary.main}`,
     },

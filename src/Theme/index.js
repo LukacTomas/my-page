@@ -7,7 +7,6 @@ import { Mouseeffect } from "./Components/Mouseeffect";
 import { Background } from "./Components/Background";
 import { BackgroundParticles as Particles } from "./Components/Particles";
 
-
 const theme = createTheme({
   palette: {
     mode: "dark",
@@ -20,6 +19,20 @@ const theme = createTheme({
     },
     text: {
       primary: "#ffffff",
+    },
+    ringOfFire: {
+      add20: {
+        first: "#af2312",
+        second: "#af0160",
+      },
+      add60: {
+        first: "#ca2312",
+        second: "#ca00a0",
+      },
+      add80: {
+        first: "#aa0055",
+        second: "#ca0050",
+      },
     },
   },
 });
