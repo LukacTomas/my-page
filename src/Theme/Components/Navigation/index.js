@@ -3,6 +3,7 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import { LanguageMenu } from "./Language";
+import { Menu } from "./Menu";
 
 export const Navigation = () => {
   return (
@@ -17,7 +18,9 @@ export const Navigation = () => {
           <Box sx={{ flexGrow: 1 }}>
             <LanguageMenu />
           </Box>
-          <Box sx={{ my: 7 }}>Menu</Box>
+          <Box sx={{ my: 7 }}>
+            <Menu />
+          </Box>
         </Toolbar>
       </AppBar>
     </Box>

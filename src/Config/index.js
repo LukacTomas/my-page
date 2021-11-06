@@ -15,11 +15,6 @@ export const paths = {
 
 export const routes = [
   {
-    path: "/",
-    exact: true,
-    component: <h1>Ahoj</h1>,
-  },
-  {
     path: "/en/home/",
     exact: true,
     component: <h1>en/home</h1>,
