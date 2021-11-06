@@ -7,6 +7,8 @@ import { LeftPanel } from "./Leftpanel";
 import RightPanel from "./Rightpanel";
 import { Seo } from "Seo";
 
+import { Seo } from "Seo";
+
 const Resume = () => {
   const lang = useLanguage();
 
