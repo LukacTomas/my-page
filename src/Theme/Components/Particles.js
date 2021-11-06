@@ -11,20 +11,22 @@ const particlesOption = {
     events: {
       onClick: {
         enable: true,
-        mode: "push",
+        mode: "repulse",
       },
       onHover: {
         enable: true,
-        mode: "repulse",
+        mode: "bubble",
       },
       resize: true,
     },
+
     modes: {
       bubble: {
-        distance: 400,
+        distance: 300,
         duration: 2,
-        opacity: 0.8,
-        size: 40,
+        opacity: 0.4,
+        size: 8,
+        color: "#feae53",
       },
       push: {
         quantity: 4,
@@ -47,8 +49,8 @@ const particlesOption = {
       direction: "none",
       enable: true,
       outMode: "bounce",
-      random: false,
-      speed: 3,
+      random: true,
+      speed: 1,
       straight: false,
     },
     number: {

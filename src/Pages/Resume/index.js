@@ -5,6 +5,7 @@ import { useData } from "./config";
 
 import { LeftPanel } from "./Leftpanel";
 import RightPanel from "./Rightpanel";
+import { Seo } from "Seo";
 
 const Resume = () => {
   const lang = useLanguage();
@@ -14,6 +15,7 @@ const Resume = () => {
 
   return (
     <>
+      <Seo seo={data.helmet} />
       <Grid
         container
         spacing={2}
