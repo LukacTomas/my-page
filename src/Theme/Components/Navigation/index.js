@@ -2,6 +2,7 @@ import React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
+import { LanguageMenu } from "./Language";
 
 export const Navigation = () => {
   return (
@@ -13,7 +14,9 @@ export const Navigation = () => {
         color="transparent"
       >
         <Toolbar>
-          <Box sx={{ flexGrow: 1 }}>Language</Box>
+          <Box sx={{ flexGrow: 1 }}>
+            <LanguageMenu />
+          </Box>
           <Box sx={{ my: 7 }}>Menu</Box>
         </Toolbar>
       </AppBar>
