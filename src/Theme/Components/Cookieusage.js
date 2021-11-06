@@ -1,9 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Button, Snackbar, Slide } from "@mui/material/";
+import { Snackbar, Slide } from "@mui/material/";
+import MuiAlert from "@mui/material/Alert";
 
-function TransitionUp(props) {
+const Transitionup = (props) => {
   return <Slide {...props} direction="up" />;
-}
+};
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 export const Cookieusage = () => {
   const [snackOpen, setSnackOpen] = useState(false);
@@ -19,32 +24,24 @@ export const Cookieusage = () => {
       setSnackOpen(true);
     }, 1500);
 
-    const waitForUnLoad = setTimeout(() => {
-      setSnackOpen(false);
-    }, 10000);
-
     return () => {
       clearTimeout(waitForLoad);
-      clearTimeout(waitForUnLoad);
     };
   }, []);
 
   const handleSnackClose = () => setSnackOpen(false);
 
-  const action = (
-    <Button color="primary" size="small" onClick={handleSnackClose}>
-      OK
-    </Button>
-  );
-
   return (
     <Snackbar
-      action={action}
       open={snackOpen}
       onClose={handleSnackClose}
-      TransitionComponent={TransitionUp}
-      message="I love snacks"
-      key={"TransitionUp"}
-    />
+      TransitionComponent={Transitionup}
+      key={"Transitionup"}
+      autoHideDuration={10000}
+    >
+      <Alert onClose={handleSnackClose} severity="info" sx={{ width: "100%" }}>
+        By continueing you agree with cookies!
+      </Alert>
+    </Snackbar>
   );
 };
