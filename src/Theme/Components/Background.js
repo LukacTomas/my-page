@@ -6,9 +6,10 @@ const BackgroundDiv = styled("div")(({ theme }) => ({
   height: "150vh",
   top: 0,
   left: "50vw",
-  backgroundColor: "rgb(18,18,18)",
-  background:
-    "linear-gradient(to right, rgba(18,18,18,1) 0%, rgba(33,33,33,1) 54%, rgba(45,45,66,1) 90%)",
+  backgroundColor: theme.palette.background.backgroundDiv.first,
+  background: `linear-gradient(to right, ${theme.palette.background.backgroundDiv.first} 0%, 
+      ${theme.palette.background.backgroundDiv.second} 54%,
+      ${theme.palette.background.backgroundDiv.third} 90%)`,
   zIndex: -1,
 }));
 

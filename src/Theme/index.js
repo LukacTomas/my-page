@@ -16,6 +16,11 @@ const theme = createTheme({
     },
     background: {
       paper: "#212121",
+      backgroundDiv: {
+        first: "#121212",
+        second: "#212121",
+        third: "#2d2d42",
+      },
     },
     text: {
       primary: "#ffffff",
