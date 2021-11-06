@@ -5,7 +5,6 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import { routes } from "Config";
 
 export const Routes = () => {
   return (
