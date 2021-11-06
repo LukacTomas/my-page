@@ -1,11 +1,13 @@
 import React from "react";
 import { styled } from "@mui/system";
 
+const RING_OFFSET_Y = 10;
+
 const RingOfFire = styled("div")(({ theme }) => ({
+  display: "none",
   position: "absolute",
   width: "50px",
   height: "50px",
-  display: "none",
   filter: "url(#wavy)",
 
   ":before": {
@@ -18,9 +20,9 @@ const RingOfFire = styled("div")(({ theme }) => ({
     bottom: "5px",
     border: `0px solid ${theme.palette.primary.hover}`,
     borderRadius: "50%",
-
     boxShadow: `0 0 50px ${theme.palette.primary.hover}, inset 0 0 5px ${theme.palette.primary.main}`,
   },
+
   "@keyframes rotate": {
     "0%": {
       transform: "rotate(0deg)",
@@ -50,7 +52,15 @@ const RingOfFire = styled("div")(({ theme }) => ({
 }));
 
 export const Mouseeffect = () => {
-  const ringRef = React.useRef();
+  const ringRef = React.useRef(null);
+
+  /**
+   * handleMousemove -
+   * ring tracking every mouse move
+   *
+   * @param: event - mouseEvent
+   *
+   */
   const handleMousemove = React.useCallback((event) => {
     if (!ringRef) return;
 
@@ -58,20 +68,25 @@ export const Mouseeffect = () => {
       x: event.pageX,
       y: event.pageY,
     };
-    const OFFSET_Y = 10;
-    ringRef.current.style.display = "block";
-    ringRef.current.style.position = "absolute";
-    ringRef.current.style.top = position.y + OFFSET_Y + "px";
-    ringRef.current.style.left = position.x + "px";
+
+    const ringRefStyles = ringRef.current.style;
+    ringRefStyles.display = "block";
+    ringRefStyles.top = position.y + RING_OFFSET_Y + "px";
+    ringRefStyles.left = position.x + "px";
   }, []);
 
+  /**
+   * useEffect that adds evendlistener to mousemove
+   * handleMousemove function is called
+   *
+   */
   React.useEffect(() => {
     window.addEventListener("mousemove", handleMousemove);
-
     return () => {
       window.removeEventListener("mousemove", handleMousemove);
     };
   }, [handleMousemove]);
+
   return (
     <>
       <RingOfFire ref={ringRef} />
