@@ -1,18 +1,22 @@
 import React from "react";
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   Routes as Switch,
   Route,
+  Navigate,
 } from "react-router-dom";
-import { paths } from "Config";
+import { routes } from "Config";
 
-export const Routes = ({ children }) => {
-  console.log(paths);
+export const Routes = () => {
   return (
-    <Router>
+    <BrowserRouter>
       <Switch>
-       
+        <Route path="en/home/" element={<h1>EN HOME</h1>} />
+        <Route path="en/resume/" element={<h1>EN resume</h1>} />
+        <Route path="sk/home/" element={<h1>SK HOME</h1>} />
+        <Route path="sk/resume/" element={<h1>SK resume</h1>} />
+        <Route path="" element={<Navigate to="/en/home/" />} />
       </Switch>
-    </Router>
+    </BrowserRouter>
   );
 };

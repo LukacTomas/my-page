@@ -12,3 +12,31 @@ export const paths = {
     Resumé: { route: "/sk/resume", icon: "📋", id: "Resume" },
   },
 };
+
+export const routes = [
+  {
+    path: "/",
+    exact: true,
+    component: <h1>Ahoj</h1>,
+  },
+  {
+    path: "/en/home/",
+    exact: true,
+    component: <h1>en/home</h1>,
+  },
+  {
+    path: "/en/resume/",
+    exact: true,
+    component: <h1>end/resume</h1>,
+  },
+  {
+    path: "/sk/home/",
+    exact: true,
+    component: <h1>sk/home</h1>,
+  },
+  {
+    path: "/sk/resume/",
+    exact: true,
+    component: <h1>sk/resume</h1>,
+  },
+];

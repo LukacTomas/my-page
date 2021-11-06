@@ -6,7 +6,7 @@ import {
   Mouseeffect,
   Background,
   BackgroundParticles as Particles,
-  Cookieusage,
+  //Cookieusage,
   Routes,
 } from "./Components/";
 
@@ -51,10 +51,10 @@ export const Theme = ({ language, children }) => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Routes />
+      <Routes/>
       {children}
       <Background />
-      <Cookieusage />
+
       <Particles />
       <Mouseeffect />
       <SayHi />
