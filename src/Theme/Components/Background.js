@@ -1,5 +1,6 @@
 import { styled } from "@mui/system";
 import React from "react";
+
 const BackgroundDiv = styled("div")(({ theme }) => ({
   position: "absolute",
   width: "50vw",
@@ -12,7 +13,13 @@ const BackgroundDiv = styled("div")(({ theme }) => ({
       ${theme.palette.background.backgroundDiv.third} 90%)`,
   zIndex: -1,
 }));
-
+/**
+ * Background
+ * - gradient background div that streches from
+ *   second half of the screen to the end
+ *
+ * @returns BackgroundDiv
+ */
 export const Background = () => {
   return <BackgroundDiv />;
 };
