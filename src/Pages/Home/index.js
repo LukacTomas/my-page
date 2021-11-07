@@ -5,6 +5,8 @@ import { useLanguage } from "Hooks";
 import { useData } from "./config";
 
 import { Jobs } from "./Jobs";
+import { LearnMore } from "./Learnmore";
+
 export const Home = () => {
   const lang = useLanguage();
   const data = useData(lang);
@@ -65,6 +67,7 @@ export const Home = () => {
               style={{ zIndex: 6, textShadow: "0 0 5px #fff" }}
             >
               {page.text}
+              <LearnMore ButtonText={page.callToAction} />
             </Typography>
           </Box>
         </Grid>
@@ -74,7 +77,7 @@ export const Home = () => {
           display: { xs: "none", md: "block" },
         }}
       >
-        Learn More
+        ROCKET
       </Box>
     </div>
   );
