@@ -8,7 +8,8 @@ import {
 import "./Transitionroutes.css";
 
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import Resume from "Pages/Resume";
+import { Home, Resume } from "Pages";
+
 //const Resume = React.lazy(() => import("Pages/Resume"));
 
 export const Transitionroutes = ({ children }) => {
@@ -22,7 +23,7 @@ export const Transitionroutes = ({ children }) => {
         classNames="page"
       >
         <Switch location={location}>
-          <Route exact={true} path="en/home/" element={<h1>EN HOME</h1>} />
+          <Route exact={true} path="en/home/" element={<Home />} />
           <Route
             exact={true}
             path="en/resume/"
@@ -32,7 +33,7 @@ export const Transitionroutes = ({ children }) => {
               </Suspense>
             }
           />
-          <Route exact={true} path="sk/home/" element={<h1>SK HOME</h1>} />
+          <Route exact={true} path="sk/home/" element={<Home />} />
           <Route
             exact={true}
             path="sk/resume/"

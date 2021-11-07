@@ -7,7 +7,7 @@ import { LeftPanel } from "./Leftpanel";
 import RightPanel from "./Rightpanel";
 import { Seo } from "Seo";
 
-const Resume = () => {
+export const Resume = () => {
   const lang = useLanguage();
 
   // load data based on current language
@@ -33,5 +33,3 @@ const Resume = () => {
     </>
   );
 };
-
-export default Resume;
