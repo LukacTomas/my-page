@@ -8,7 +8,8 @@ import {
 import "./Transitionroutes.css";
 
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-const Resume = React.lazy(() => import("Pages/Resume"));
+import Resume from "Pages/Resume";
+//const Resume = React.lazy(() => import("Pages/Resume"));
 
 export const Transitionroutes = ({ children }) => {
   let location = useLocation();
