@@ -1,5 +1,81 @@
 import React from "react";
+import { Grid, Box, Typography } from "@mui/material";
+import { Seo } from "Seo";
+import { useLanguage } from "Hooks";
+import { useData } from "./config";
 
+import { Jobs } from "./Jobs";
 export const Home = () => {
-  return <div>This is my new Home</div>;
+  const lang = useLanguage();
+  const data = useData(lang);
+  const { page } = data;
+
+  return (
+    <div>
+      <Seo seo={data.helmet} />
+      <Grid
+        sx={{ flexGrow: 1, my: "2vh", px: "2vw" }}
+        direction="row"
+        justifyContent="space-between"
+        alignItems="top"
+        container
+        spacing={12}
+      >
+        <Grid item xs={12} md={6} sx={{ display: { xs: "none", md: "block" } }}>
+          <Box
+            sx={{
+              display: { xs: "none", md: "block" },
+              margin: "10vh auto",
+              maxWidth: "300px",
+            }}
+          >
+            Moon
+          </Box>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Box
+            sx={{
+              maxWidth: "450px",
+              zIndex: 2,
+              margin: { xs: "0 auto", md: 0 },
+            }}
+          >
+            <Typography
+              variant="h2"
+              component="h1"
+              style={{ textShadow: "0 0 15px #bc7754" }}
+            >
+              {page.name}
+            </Typography>
+            <Typography variant="h3" component="h1">
+              <Jobs jobs={page.jobs} />
+            </Typography>
+          </Box>
+          <Box
+            sx={{
+              justifyContent: "flex-end",
+              margin: "5vh auto",
+              maxWidth: "500px",
+            }}
+          >
+            <Typography
+              variant="h5"
+              component="p"
+              sx={{ textAlign: "justify" }}
+              style={{ zIndex: 6, textShadow: "0 0 5px #fff" }}
+            >
+              {page.text}
+            </Typography>
+          </Box>
+        </Grid>
+      </Grid>
+      <Box
+        sx={{
+          display: { xs: "none", md: "block" },
+        }}
+      >
+        Learn More
+      </Box>
+    </div>
+  );
 };
