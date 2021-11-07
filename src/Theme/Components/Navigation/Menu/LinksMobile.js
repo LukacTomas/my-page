@@ -4,7 +4,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/system";
-import { Drawer } from "@mui/material";
+import { Drawer, Typography, Link as MuiLink } from "@mui/material";
 import { useLocation } from "react-router-dom";
 
 import { paths } from "Config";
@@ -28,6 +28,36 @@ const MyIconButton = styled(IconButton)(({ theme }) => ({
   },
 }));
 
+const MyDrawer = styled(Drawer)(({ open }) => ({
+  position: "fixed",
+  overflowY: "hidden",
+  top: 0,
+  right: 0,
+
+  width: "100vw",
+  maxHeight: "100vh",
+  "& .MuiDrawer-paper": {
+    width: "100vw",
+  },
+  zIndex: `${!open ? -1 : 999}`,
+  a: {
+    position: "relative",
+    height: "78px",
+    textAlign: "center",
+  },
+}));
+
+const Nav = styled("nav")(({ theme }) => ({
+  boxShadow: `0 0 0.2em  ${theme.palette.primary.main}`,
+  display: "flex",
+  flexDirection: "column",
+  margin: "0 auto",
+  padding: "1.5em",
+  position: "relative",
+  top: "20vh",
+  width: "100vw",
+}));
+
 export const LinksMobile = () => {
   const [open, setOpen] = React.useState(false);
   const lang = useLanguage();
@@ -40,34 +70,34 @@ export const LinksMobile = () => {
 
   return (
     <>
-      <Drawer
-        sx={{
-          position: "fixed",
-          overflowY: "hidden",
-          top: 0,
-          right: 0,
-
-          width: "100vw",
-          maxHeight: "100vh",
-          "& .MuiDrawer-paper": {
-            width: "100vw",
-          },
-          zIndex: `${!open ? -1 : 999}`,
-        }}
-        variant="persistent"
-        anchor="right"
-        open={open}
-      >
-        {pathsForCurrentLanguage.map((path) => (
-          <Link
-            key={path.route}
-            id={path.id}
-            to={path.route}
-            text={`${path.icon} ${path.title}`}
-            onClick={() => setOpen((state) => !state)}
-          />
-        ))}
-      </Drawer>
+      <MyDrawer variant="persistent" anchor="right" open={open}>
+        <Nav>
+          <Typography align="center" variant="h4">
+            🚀Tomas Lukac🚀
+          </Typography>
+          <Typography align="center" variant="h5">
+            📫 lukactv@gmail.com
+          </Typography>
+          <Typography align="center" variant="h6">
+            <MuiLink
+              href="https://github.com/LukacTomas"
+              color="inherit"
+              underline="none"
+              target="_blanck"
+            >
+              github.com/LukacTomas
+            </MuiLink>
+          </Typography>
+          {pathsForCurrentLanguage.map((path) => (
+            <Link
+              key={path.route}
+              id={path.id}
+              to={path.route}
+              text={`${path.icon} ${path.title}`}
+            />
+          ))}
+        </Nav>
+      </MyDrawer>
       <MyIconButton size="large" onClick={() => setOpen((state) => !state)}>
         {!open ? <MenuIcon /> : <CloseIcon />}
       </MyIconButton>
