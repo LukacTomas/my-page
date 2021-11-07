@@ -3,14 +3,18 @@ import React from "react";
 
 const BackgroundDiv = styled("div")(({ theme }) => ({
   position: "absolute",
-  width: "50vw",
-  height: "150vh",
+  width: "100vw",
+  height: "100%",
   top: 0,
-  left: "50vw",
+  //left: "50vw",
   backgroundColor: theme.palette.background.backgroundDiv.first,
-  background: `linear-gradient(to right, ${theme.palette.background.backgroundDiv.first} 0%, 
-      ${theme.palette.background.backgroundDiv.second} 54%,
-      ${theme.palette.background.backgroundDiv.third} 90%)`,
+
+  [theme.breakpoints.up("xs")]: {
+    background: `linear-gradient(10deg, ${theme.palette.background.backgroundDiv.first} 0%,
+      ${theme.palette.background.backgroundDiv.first} 20%, 
+      ${theme.palette.background.backgroundDiv.second} 80%,
+      ${theme.palette.background.backgroundDiv.third} 96%)`,
+  },
   zIndex: -1,
 }));
 /**
