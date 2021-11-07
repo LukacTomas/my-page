@@ -6,6 +6,7 @@ import { useData } from "./config";
 
 import { Jobs } from "./Jobs";
 import { LearnMore } from "./Learnmore";
+import Moon from "./Moon";
 
 export const Home = () => {
   const lang = useLanguage();
@@ -31,7 +32,7 @@ export const Home = () => {
               maxWidth: "300px",
             }}
           >
-            Moon
+            <Moon />
           </Box>
         </Grid>
         <Grid item xs={12} md={6}>
