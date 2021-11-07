@@ -1,0 +1,9 @@
+{
+  "short_name": "Tomas Lukac page",
+  "name": "Tomas Lukac Personal Web Page",
+  
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
