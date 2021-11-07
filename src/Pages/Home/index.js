@@ -6,6 +6,7 @@ import { useData } from "./config";
 
 import { Jobs } from "./Jobs";
 import { LearnMore } from "./Learnmore";
+import  Rocket  from "./Rocket";
 import Moon from "./Moon";
 
 export const Home = () => {
@@ -78,7 +79,7 @@ export const Home = () => {
           display: { xs: "none", md: "block" },
         }}
       >
-        ROCKET
+        <Rocket popupText={page.popUpText} />
       </Box>
     </div>
   );
