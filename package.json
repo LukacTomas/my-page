@@ -1,7 +1,7 @@
 {
   "name": "tomas-lukac-website",
   "version": "0.1.0",
-  "homepage": "https://tomaslukac.herokuapp.com/",
+  "homepage": "",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.5.0",
@@ -29,7 +29,7 @@
   },
   "scripts": {
     "start": "node server/server.js",
-    "dev start": "react-scripts start",
+    "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
