@@ -2,6 +2,7 @@
   "name": "tomas-lukac-website",
   "version": "0.1.0",
   "homepage": "https://tomaslukac.herokuapp.com/",
+  "start_url":"https://tomaslukac.herokuapp.com/",
   "private": false,
   "dependencies": {
     "@emotion/react": "^11.5.0",
