@@ -6,7 +6,7 @@ import { useData } from "./config";
 
 import { Jobs } from "./Jobs";
 import { LearnMore } from "./Learnmore";
-import  Rocket  from "./Rocket";
+import Rocket from "./Rocket";
 import Moon from "./Moon";
 
 export const Home = () => {
@@ -64,7 +64,7 @@ export const Home = () => {
           >
             <Typography
               variant="h5"
-              component="p"
+              component="div"
               sx={{ textAlign: "justify" }}
               style={{ zIndex: 6, textShadow: "0 0 5px #fff" }}
             >
