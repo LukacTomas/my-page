@@ -4,6 +4,8 @@ import { Timeline } from "./Timeline";
 import { styled } from "@mui/system";
 import { Link } from "@mui/material";
 
+import badge from "Static/python-badge.png";
+
 const MyLink = styled(Link)({
   color: "white",
   fontSize: "1rem",
@@ -25,6 +27,22 @@ export default function RightPanel({ data }) {
       <Typography align="center" component="h2" variant="h5">
         <MyLink href="https://github.com/LukacTomas" target="_blank">
           github/LukacTomas
+        </MyLink>
+        <MyLink
+          href="https://www.coursera.org/account/accomplishments/professional-cert/DTKBUW97PK4Q"
+          target="_blank"
+        >
+          <img
+            src={badge}
+            alt="Google IT Automation with Python Certificate"
+            loading="lazy"
+            style={{
+              width: "100%",
+              maxWidth: "150px",
+              display: "block",
+              margin: "0  auto",
+            }}
+          />
         </MyLink>
       </Typography>
       <div style={{ padding: "1em" }}>
