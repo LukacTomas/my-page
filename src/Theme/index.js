@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import { CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import {
-  Mouseeffect,
+  //Mouseeffect,
   Background,
   BackgroundParticles as Particles,
   //Cookieusage,
@@ -12,6 +12,8 @@ import {
 import "./theme.css";
 
 const SayHi = React.lazy(() => import("./Components/Sayhi"));
+const Mouseeffect = React.lazy(() => import("./Components/Mouseeffect"));
+
 const theme = createTheme({
   palette: {
     mode: "dark",
@@ -58,8 +60,9 @@ export const Theme = ({ language, children }) => {
       {children}
       <Background />
       <Particles />
-      <Mouseeffect />
       <Suspense fallback={<></>}>
+        <Mouseeffect />
+
         <SayHi />
       </Suspense>
     </ThemeProvider>
