@@ -4,7 +4,7 @@ import { useLanguage } from "Hooks";
 
 import { Link } from "./Link";
 
-export const LinksScreen = () => {
+export default function LinksScreen() {
   const lang = useLanguage();
   const pathsForCurrentLanguage = Object.values(paths[lang]);
 
@@ -16,4 +16,4 @@ export const LinksScreen = () => {
       text={`${path.icon} ${path.title}`}
     />
   ));
-};
+}

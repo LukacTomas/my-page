@@ -58,7 +58,7 @@ const Nav = styled("nav")(({ theme }) => ({
   width: "100vw",
 }));
 
-export const LinksMobile = () => {
+export default function LinksMobile() {
   const [open, setOpen] = React.useState(false);
   const lang = useLanguage();
   const pathsForCurrentLanguage = Object.values(paths[lang]);
@@ -103,4 +103,4 @@ export const LinksMobile = () => {
       </MyIconButton>
     </>
   );
-};
+}
