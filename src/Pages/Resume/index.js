@@ -4,7 +4,7 @@ import { useLanguage } from "Hooks";
 import { useData } from "./config";
 
 import { LeftPanel } from "./Leftpanel";
-import RightPanel from "./Rightpanel";
+import { RightPanel } from "./Rightpanel";
 import { Seo } from "Seo";
 
 export const Resume = () => {
