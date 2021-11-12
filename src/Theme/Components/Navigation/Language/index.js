@@ -20,7 +20,7 @@ const MyIconButton = styled(IconButton)(({ theme }) => ({
   },
 }));
 
-export const LanguageMenu = () => {
+export default function LanguageMenu() {
   const [menuEl, setMenuEl] = React.useState(null);
   const open = Boolean(menuEl);
 
@@ -43,4 +43,4 @@ export const LanguageMenu = () => {
       </Menu>
     </>
   );
-};
+}

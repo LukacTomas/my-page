@@ -1,7 +1,7 @@
 import React from "react";
 import "./resume.css";
 
-export const LeftPanel = () => {
+export default function LeftPanel() {
   return (
     <main>
       <div className="card primary">
@@ -187,4 +187,6 @@ export const LeftPanel = () => {
       </div>
     </main>
   );
-};
+}
+
+//export default LeftPanel;

@@ -26,6 +26,6 @@ const BackgroundDiv = styled("div")(({ theme }) => ({
  *
  * @returns BackgroundDiv
  */
-export const Background = () => {
+export default function Background() {
   return <BackgroundDiv />;
-};
+}

@@ -1,17 +1,20 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import {
-  SayHi,
-  Mouseeffect,
-  Background,
-  BackgroundParticles as Particles,
+  //Mouseeffect,
+  //Background,
+  //BackgroundParticles as Particles,
   //Cookieusage,
   Routes,
   Navigation,
 } from "./Components/";
-
 import "./theme.css";
+
+const SayHi = React.lazy(() => import("./Components/Sayhi"));
+const Mouseeffect = React.lazy(() => import("./Components/Mouseeffect"));
+const Particles = React.lazy(() => import("./Components/Particles"));
+const Background = React.lazy(() => import("./Components/Background"));
 
 const theme = createTheme({
   palette: {
@@ -52,15 +55,16 @@ export const Theme = ({ language, children }) => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-
       <Routes>
         <Navigation />
       </Routes>
       {children}
-      <Background />
-      <Particles />
-      <Mouseeffect />
-      <SayHi />
+      <Suspense fallback={<></>}>
+        <Background />
+        <Particles />
+        <Mouseeffect />
+        <SayHi />
+      </Suspense>
     </ThemeProvider>
   );
 };
