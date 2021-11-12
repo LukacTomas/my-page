@@ -1,8 +1,7 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import {
-  SayHi,
   Mouseeffect,
   Background,
   BackgroundParticles as Particles,
@@ -10,9 +9,9 @@ import {
   Routes,
   Navigation,
 } from "./Components/";
-
 import "./theme.css";
 
+const SayHi = React.lazy(() => import("./Components/Sayhi"));
 const theme = createTheme({
   palette: {
     mode: "dark",
@@ -60,7 +59,9 @@ export const Theme = ({ language, children }) => {
       <Background />
       <Particles />
       <Mouseeffect />
-      <SayHi />
+      <Suspense fallback={<></>}>
+        <SayHi />
+      </Suspense>
     </ThemeProvider>
   );
 };
