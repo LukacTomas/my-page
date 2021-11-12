@@ -14,7 +14,7 @@ const MyLink = styled(Link)({
   textDecoration: "none",
 });
 
-export const RightPanel = ({ data }) => {
+export default function RightPanel({ data }) {
   const { title, jobs, school } = data;
   return (
     <>
@@ -51,4 +51,6 @@ export const RightPanel = ({ data }) => {
       </div>
     </>
   );
-};
+}
+
+//export default RightPanel;
