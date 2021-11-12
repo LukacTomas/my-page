@@ -1,5 +1,5 @@
-import { Background } from "./Background";
-import { BackgroundParticles } from "./Particles";
+import Background from "./Background";
+import BackgroundParticles from "./Particles";
 import Mouseeffect from "./Mouseeffect";
 import { Cookieusage } from "./Cookieusage";
 import { Navigation } from "./Navigation";
