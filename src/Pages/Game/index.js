@@ -39,8 +39,9 @@ const getRandomAsteroid = (xPos) => ({
   speed: randomAsteroidSpeed(),
 });
 
-export const Game = () => {
+export default function Game() {
   const [asteroids, setAsteroids] = React.useState([getRandomAsteroid(500)]);
+  const [avoided, setAvoided] = React.useState(0);
   const [start, setStart] = React.useState(false);
   const [colided, setColided] = React.useState(false);
   const [timer, setTimer] = React.useState(0);
@@ -71,6 +72,7 @@ export const Game = () => {
   const startGame = () => {
     setStart((running) => !running);
     setColided(false);
+    setAvoided(0);
   };
 
   React.useEffect(() => {
@@ -84,6 +86,7 @@ export const Game = () => {
       setAsteroids((asteroids) => {
         let newAsteroids = asteroids.map((asteroid) => {
           if (asteroid.y > gameWin.bottom - asteroid.width) {
+            setAvoided((num) => num + 1);
             return getRandomAsteroid(gameWinLength + asteroid.width);
           }
 
@@ -124,6 +127,7 @@ export const Game = () => {
     timer,
     moveOrRandomAsteroid,
     checkAsteroidDetection,
+    setAvoided,
   ]);
 
   React.useEffect(() => {
@@ -137,6 +141,7 @@ export const Game = () => {
       <Button variant="contained" onClick={startGame}>
         {!start ? "Start Game" : "Pause Game"}
       </Button>
+      <Typography> You have avoided {avoided} asteroids</Typography>
 
       <Gamewindow ref={gameWinRef}>
         <Asteroids asteroids={asteroids} />
@@ -158,10 +163,11 @@ export const Game = () => {
             Game Over
           </Typography>
           <Typography align="center" sx={{ mt: 2 }}>
-            Good game. Wanna try again? Checkout soon, features will be added.
+            Good game. You have avoided {avoided} asteroids. Wanna try again?
+            Check back again, features are comming soon ...
           </Typography>
         </Box>
       </Modal>
     </>
   );
-};
+}

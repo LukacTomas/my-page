@@ -1,9 +1,9 @@
-import React from "react";
+import React, { Suspense } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import { LanguageMenu } from "./Language";
-import { Menu } from "./Menu";
+const LanguageMenu = React.lazy(() => import("./Language"));
+const Menu = React.lazy(() => import("./Menu"));
 
 export const Navigation = () => {
   return (
@@ -16,10 +16,14 @@ export const Navigation = () => {
       >
         <Toolbar>
           <Box sx={{ flexGrow: 1 }}>
-            <LanguageMenu />
+            <Suspense fallback={<></>}>
+              <LanguageMenu />
+            </Suspense>
           </Box>
           <Box sx={{ my: 7 }}>
-            <Menu />
+            <Suspense fallback={<></>}>
+              <Menu />
+            </Suspense>
           </Box>
         </Toolbar>
       </AppBar>

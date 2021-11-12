@@ -3,7 +3,6 @@ import { Grid, Box, Typography } from "@mui/material";
 import { Seo } from "Seo";
 import { useLanguage } from "Hooks";
 import { useData } from "./config";
-
 import { Jobs } from "./Jobs";
 import { LearnMore } from "./Learnmore";
 import Rocket from "./Rocket";

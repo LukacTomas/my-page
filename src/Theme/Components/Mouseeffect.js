@@ -55,7 +55,7 @@ const RingOfFire = styled("div")(({ theme }) => ({
   },
 }));
 
-export const Mouseeffect = () => {
+export default function Mouseeffect() {
   const ringRef = React.useRef(null);
 
   /**
@@ -108,4 +108,4 @@ export const Mouseeffect = () => {
       </svg>
     </>
   );
-};
+}

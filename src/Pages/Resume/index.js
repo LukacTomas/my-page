@@ -1,13 +1,16 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Grid } from "@mui/material";
+import { Seo } from "Seo";
 import { useLanguage } from "Hooks";
 import { useData } from "./config";
+import Loading from "Shared/Loading";
+const LeftPanel = React.lazy(() => import("./Leftpanel"));
+const RightPanel = React.lazy(() => import("./Rightpanel"));
 
-import { LeftPanel } from "./Leftpanel";
-import RightPanel from "./Rightpanel";
-import { Seo } from "Seo";
+//import { LeftPanel } from "./Leftpanel";
+//import { RightPanel } from "./Rightpanel";
 
-export const Resume = () => {
+export default function Resume() {
   const lang = useLanguage();
 
   // load data based on current language
@@ -24,12 +27,16 @@ export const Resume = () => {
         alignItems="flex-start"
       >
         <Grid item xs={12} md={6} lg={4}>
-          <RightPanel data={data} />
+          <Suspense fallback={<Loading />}>
+            <RightPanel data={data} />
+          </Suspense>
         </Grid>
         <Grid item xs={12} md={6} lg={8}>
-          <LeftPanel />
+          <Suspense fallback={<Loading />}>
+            <LeftPanel />
+          </Suspense>
         </Grid>
       </Grid>
     </>
   );
-};
+}

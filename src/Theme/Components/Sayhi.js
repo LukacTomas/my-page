@@ -1,6 +1,6 @@
 import React from "react";
 
-export const SayHi = () => {
+export default function SayHi() {
   //console.clear();
   console.log(
     "%c%s",
@@ -18,4 +18,4 @@ export const SayHi = () => {
  Write me at lukactv@gmail.com with #🚀together  `
   );
   return <></>;
-};
+}

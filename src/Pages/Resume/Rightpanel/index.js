@@ -1,10 +1,11 @@
-import * as React from "react";
+import React, { Suspense } from "react";
 import Typography from "@mui/material/Typography";
-import { Timeline } from "./Timeline";
 import { styled } from "@mui/system";
 import { Link } from "@mui/material";
-
 import badge from "Static/python-badge.png";
+import Loading from "Shared/Loading";
+//import { Timeline } from "./Timeline";
+const Timeline = React.lazy(() => import("./Timeline"));
 
 const MyLink = styled(Link)({
   color: "white",
@@ -46,9 +47,13 @@ export default function RightPanel({ data }) {
         </MyLink>
       </Typography>
       <div style={{ padding: "1em" }}>
-        <Timeline data={jobs} />
-        <Timeline data={school} />
+        <Suspense fallback={<Loading />}>
+          <Timeline data={jobs} />
+          <Timeline data={school} />
+        </Suspense>
       </div>
     </>
   );
 }
+
+//export default RightPanel;

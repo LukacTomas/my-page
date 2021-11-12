@@ -80,6 +80,6 @@ const particlesOption = {
  *
  * Author: Tomas Lukac
  */
-export const BackgroundParticles = () => {
+export default function BackgroundParticles() {
   return <Particles options={particlesOption} />;
-};
+}
