@@ -1,15 +1,48 @@
 export const paths = {
   en: {
-    Home: { route: "/en/home/", icon: "🏠", id: "Home", title:"Home" },
+    Home: {
+      route: "/en/home/",
+      icon: "🏠",
+      id: "Home",
+      title: "Home",
+    },
     //Blog: { route: "/en/blog/", icon: "📚", id: "Blog", title:"Blog"  },
     //Course: { route: "/en/course/", icon: "🎓", id: "Course", title:"Course" },
-    Resume: { route: "/en/resume", icon: "📋", id: "Resume", title:"Resume" },
+    Game: {
+      route: "/en/game",
+      icon: "🎮",
+      id: "Game",
+      title: "Game",
+    },
+
+    Resume: {
+      route: "/en/resume",
+      icon: "📋",
+      id: "Resume",
+      title: "Resume",
+    },
   },
   sk: {
-    Domov: { route: "/sk/home/", icon: "🏠", id: "Home", title:"Domov" },
+    Domov: {
+      route: "/sk/home/",
+      icon: "🏠",
+      id: "Home",
+      title: "Domov",
+    },
     //Blog: { route: "/sk/blog/", icon: "📚", id: "Blog" },
     //Kurz: { route: "/sk/course/", icon: "🎓", id: "Course" },
-    Resumé: { route: "/sk/resume", icon: "📋", id: "Resume", title:"Resumé" },
+    Game: {
+      route: "/sk/game",
+      icon: "🎮",
+      id: "Game",
+      title: "Game",
+    },
+    Resumé: {
+      route: "/sk/resume",
+      icon: "📋",
+      id: "Resume",
+      title: "Resumé",
+    },
   },
 };
 

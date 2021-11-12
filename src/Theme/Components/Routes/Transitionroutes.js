@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 import {
   Routes as Switch,
   Route,
@@ -7,12 +7,17 @@ import {
 } from "react-router-dom";
 import "./Transitionroutes.css";
 
-import { TransitionGroup, CSSTransition } from "react-transition-group";
-import { Home, Resume } from "Pages";
+import {
+  TransitionGroup,
+  CSSTransition,
+} from "react-transition-group";
+import { Home, Resume, Game } from "Pages";
 
-//const Resume = React.lazy(() => import("Pages/Resume"));
+// const Resume = React.lazy(() => import("Pages/Resume"));
 
-export const Transitionroutes = ({ children }) => {
+export const Transitionroutes = ({
+  children,
+}) => {
   let location = useLocation();
 
   return (
@@ -23,27 +28,40 @@ export const Transitionroutes = ({ children }) => {
         classNames="page"
       >
         <Switch location={location}>
-          <Route exact={true} path="en/home/" element={<Home />} />
+          <Route
+            exact={true}
+            path="en/home/"
+            element={<Home />}
+          />
+          <Route
+            exact={true}
+            path="en/game/"
+            element={<Game />}
+          />
           <Route
             exact={true}
             path="en/resume/"
-            element={
-              <Suspense fallback={<></>}>
-                <Resume />
-              </Suspense>
-            }
+            element={<Resume />}
           />
-          <Route exact={true} path="sk/home/" element={<Home />} />
+          <Route
+            exact={true}
+            path="sk/home/"
+            element={<Home />}
+          />
+          <Route
+            exact={true}
+            path="sk/game/"
+            element={<Game />}
+          />
           <Route
             exact={true}
             path="sk/resume/"
-            element={
-              <Suspense fallback={<></>}>
-                <Resume />
-              </Suspense>
-            }
+            element={<Resume />}
           />
-          <Route path="" element={<Navigate to="/en/home/" />} />
+          <Route
+            path=""
+            element={<Navigate to="/en/home/" />}
+          />
         </Switch>
       </CSSTransition>
     </TransitionGroup>
