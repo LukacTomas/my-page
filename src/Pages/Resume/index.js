@@ -10,7 +10,7 @@ const RightPanel = React.lazy(() => import("./Rightpanel"));
 //import { LeftPanel } from "./Leftpanel";
 //import { RightPanel } from "./Rightpanel";
 
-export const Resume = () => {
+export default function Resume() {
   const lang = useLanguage();
 
   // load data based on current language
@@ -39,4 +39,4 @@ export const Resume = () => {
       </Grid>
     </>
   );
-};
+}

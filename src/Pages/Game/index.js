@@ -39,7 +39,7 @@ const getRandomAsteroid = (xPos) => ({
   speed: randomAsteroidSpeed(),
 });
 
-export const Game = () => {
+export default function Game() {
   const [asteroids, setAsteroids] = React.useState([getRandomAsteroid(500)]);
   const [avoided, setAvoided] = React.useState(0);
   const [start, setStart] = React.useState(false);
@@ -170,4 +170,4 @@ export const Game = () => {
       </Modal>
     </>
   );
-};
+}
