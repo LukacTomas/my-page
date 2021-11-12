@@ -12,6 +12,8 @@ const MAX_KEY = 39;
 export const Rocket = ({
   gameWinRef,
   checkAsteroidDetection,
+  rocketRef,
+  start,
 }) => {
   if (isBrowser) {
     window.rocketSpeed = 15;
@@ -24,45 +26,32 @@ export const Rocket = ({
     missileY: 0,
   });
 
-  const rocketRef = useRef();
-
   const animateRocket = React.useCallback(() => {
+    if (gameWinRef.current === null || !start) return;
+
     const rocket = rocketRef.current;
-    let rocketPosition =
-      rocket.getBoundingClientRect();
-    let gamewinPosition =
-      gameWinRef.current.getBoundingClientRect();
-    const speed =
-      (isBrowser && window.rocketSpeed) || 15;
+    let rocketPosition = rocket.getBoundingClientRect();
+    let gamewinPosition = gameWinRef.current.getBoundingClientRect();
+    const speed = (isBrowser && window.rocketSpeed) || 15;
 
     const notOutsideFromViewportFromLeft = () =>
-      rocketPosition.x - speed >
-      gamewinPosition.left;
+      rocketPosition.x - speed > gamewinPosition.left;
     const notOutsideFromViewportFromRight = () =>
-      rocketPosition.right + speed <
-      gamewinPosition.right;
+      rocketPosition.right + speed < gamewinPosition.right;
 
-    const goingLeft =
-      keyPressed.current.keys[MAX_KEY - 37];
-    const goingRight =
-      keyPressed.current.keys[MAX_KEY - 39];
+    const goingLeft = keyPressed.current.keys[MAX_KEY - 37];
+    const goingRight = keyPressed.current.keys[MAX_KEY - 39];
 
-    if (
-      goingLeft &&
-      notOutsideFromViewportFromLeft()
-    ) {
+    if (goingLeft && notOutsideFromViewportFromLeft()) {
       keyPressed.current.dx -= speed;
     }
-    if (
-      goingRight &&
-      notOutsideFromViewportFromRight()
-    ) {
+    if (goingRight && notOutsideFromViewportFromRight()) {
       keyPressed.current.dx += speed;
     }
 
     rocketRef.current.style.transform = `translate(${keyPressed.current.dx}px,${keyPressed.current.dy}px)`;
     checkAsteroidDetection(rocketPosition);
-  }, [gameWinRef, checkAsteroidDetection]);
+  }, [gameWinRef, checkAsteroidDetection, rocketRef, start]);
 
   const notAlowedKey = (key) => {
     const codes = [37, 39];
@@ -80,9 +69,7 @@ export const Rocket = ({
       if (notAlowedKey(keyCode)) return;
 
       // add key to current pressed keys
-      keyPressed.current.keys[
-        MAX_KEY - keyCode
-      ] = true;
+      keyPressed.current.keys[MAX_KEY - keyCode] = true;
 
       animateRocket();
     },
@@ -96,9 +83,7 @@ export const Rocket = ({
       if (notAlowedKey(keyCode)) return;
 
       // add key to current pressed keys
-      keyPressed.current.keys[
-        MAX_KEY - keyCode
-      ] = false;
+      keyPressed.current.keys[MAX_KEY - keyCode] = false;
 
       animateRocket();
     },
@@ -106,29 +91,14 @@ export const Rocket = ({
   );
 
   React.useEffect(() => {
-    window.addEventListener(
-      "keydown",
-      handleKeyDown
-    );
-    window.addEventListener(
-      "keypress",
-      handleKeyDown
-    );
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keypress", handleKeyDown);
     window.addEventListener("keyup", handleKeyUp);
 
     return () => {
-      window.removeEventListener(
-        "keydown",
-        handleKeyDown
-      );
-      window.removeEventListener(
-        "keypress",
-        handleKeyDown
-      );
-      window.removeEventListener(
-        "keyup",
-        handleKeyUp
-      );
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keypress", handleKeyDown);
+      window.removeEventListener("keyup", handleKeyUp);
     };
   }, [handleKeyDown, handleKeyUp]);
 
@@ -138,6 +108,7 @@ export const Rocket = ({
         position: "absolute",
         top: position.top,
         left: position.left,
+        userSelect: "none",
         zIndex: 5,
       }}
       className="rocket"
