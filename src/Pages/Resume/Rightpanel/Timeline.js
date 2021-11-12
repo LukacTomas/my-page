@@ -17,7 +17,7 @@ const Div = styled(Paper)(({ theme }) => ({
   },
 }));
 
-export const Timeline = ({ data }) => {
+export default function Timeline({ data }) {
   return (
     <>
       {data.map((data) => (
@@ -33,4 +33,4 @@ export const Timeline = ({ data }) => {
       ))}
     </>
   );
-};
+}
