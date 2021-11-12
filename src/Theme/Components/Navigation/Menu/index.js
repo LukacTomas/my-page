@@ -10,13 +10,13 @@ export default function Menu() {
   const width = useWidth();
   if (width === "xs" || width === "sm")
     return (
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<></>}>
         <LinksMobile />
       </Suspense>
     );
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<></>}>
       <LinksScreen />
     </Suspense>
   );
