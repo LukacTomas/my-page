@@ -7,6 +7,7 @@ import { Jobs } from "./Jobs";
 import { LearnMore } from "./Learnmore";
 import Rocket from "./Rocket";
 import Moon from "./Moon";
+import RocketAnimation from "./Animation";
 
 export const Home = () => {
   const lang = useLanguage();
@@ -16,6 +17,7 @@ export const Home = () => {
   return (
     <div>
       <Seo seo={data.helmet} />
+      <RocketAnimation />
       <Grid
         sx={{ flexGrow: 1, my: "2vh", px: "2vw" }}
         direction="row"
