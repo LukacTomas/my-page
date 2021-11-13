@@ -34,7 +34,7 @@ export const LearnMore = ({ ButtonText }) => {
 
   React.useEffect(() => {
     timeline.current = gsap
-      .timeline({ delay: 2, repeat: -1, ease: "elastic" })
+      .timeline({ delay: 2, repeat: -1,  })
       .to(select(".arrow"), {
         color: theme.palette.primary.main,
         textShadow: `0 0 55px ${theme.palette.primary.main}`,
