@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import { Button, Typography } from "@mui/material";
 import { styled } from "@mui/system";
-import { Rocket } from "./Rocket";
+import Rocket from "./Rocket";
 import { Asteroids } from "./Asteroids";
 import { Seo } from "Seo";
 import { useLanguage } from "Hooks";

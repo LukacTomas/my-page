@@ -9,16 +9,15 @@ const position = {
 };
 
 const MAX_KEY = 39;
-export const Rocket = ({ gameWinRef, rocketRef, start }) => {
+function Rocket({ gameWinRef, rocketRef, start }) {
   if (isBrowser) {
     window.rocketSpeed = 15;
   }
-
   const keyPressed = useRef({
     keys: [],
     dx: 0,
   });
-  console.log(keyPressed.current);
+
   const animateRocket = React.useCallback(() => {
     if (gameWinRef.current === null || !start) return;
 
@@ -111,4 +110,6 @@ export const Rocket = ({ gameWinRef, rocketRef, start }) => {
       alt="rocket"
     />
   );
-};
+}
+
+export default React.memo(Rocket);
