@@ -57,7 +57,7 @@ export default function Game() {
   const [asteroids, setAsteroids] = useState([getRandomAsteroid([100, 500])]);
 
   const gameWinRef = useRef();
-  const avoided = useRef(0);
+  const points = useRef(0);
   const rocketRef = useRef();
   const gameInterval = createRef();
   const timerRef = useRef(0);
@@ -76,8 +76,8 @@ export default function Game() {
     transition({ type: "NEW" });
   }, [transition]);
 
-  const getAvoided = useCallback(() => {
-    return avoided.current;
+  const getPoints = useCallback(() => {
+    return points.current;
   }, []);
 
   const afterColisionEffects = useCallback(() => {
@@ -119,7 +119,7 @@ export default function Game() {
       setAsteroids((asteroids) => {
         let newAsteroids = asteroids.map((asteroid) => {
           if (asteroid.y > gameWin.bottom - asteroid.width) {
-            avoided.current = avoided.current + 1;
+            points.current = points.current + 1;
             return getRandomAsteroid(xPos);
           }
 
@@ -159,7 +159,7 @@ export default function Game() {
       clearInterval(gameInterval.current);
     }
     if (state === "prepared") {
-      avoided.current = 0;
+      points.current = 0;
     }
   }, [state, gameInterval]);
 
@@ -169,7 +169,10 @@ export default function Game() {
       <Button variant="contained" onClick={toggleGame}>
         {state === "playing" ? "PAUSE" : "PLAY"}
       </Button>
-      <Typography> You have avoided {avoided.current} asteroids</Typography>
+      <Typography>
+        {" "}
+        You have points {Math.ceil(points.current)} asteroids
+      </Typography>
 
       <Gamewindow ref={gameWinRef}>
         <Asteroids asteroids={asteroids} />
@@ -182,7 +185,7 @@ export default function Game() {
       </Gamewindow>
       <Gamemodal
         open={state === "colided"}
-        getAvoided={getAvoided}
+        getPoints={getPoints}
         closeModal={closeModal}
       />
     </>
