@@ -14,9 +14,8 @@ const asteroidStyles = (asteroid) => ({
   userSelect: "none",
 });
 
-function Asteroids({ asteroids }) {
-  console.log("From asteroids");
-  return asteroids.map((asteroid, index) => (
+export const Asteroids = ({ asteroids }) =>
+  asteroids.map((asteroid, index) => (
     <img
       key={index}
       src={asteroidTypes[asteroid.type]}
@@ -25,6 +24,3 @@ function Asteroids({ asteroids }) {
       style={asteroidStyles(asteroid)}
     />
   ));
-}
-
-export default React.memo(Asteroids);

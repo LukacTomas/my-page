@@ -15,10 +15,9 @@ const asteroidStyles = (asteroid) => ({
 });
 
 function Asteroids({ asteroids }) {
-  console.log("From asteroids");
   return asteroids.map((asteroid, index) => (
     <img
-      key={index}
+      key={`${index}-${Math.random()}`}
       src={asteroidTypes[asteroid.type]}
       alt="asteroid"
       className="asteroid"

@@ -11,7 +11,7 @@ const modalStyle = {
   boxShadow: 24,
   p: 4,
 };
-function Gamemodal({ open, closeModal, getAvoided }) {
+function Gamemodal({ open, closeModal, getPoints }) {
   return (
     <Modal open={open} onClose={closeModal}>
       <Box style={modalStyle}>
@@ -19,7 +19,7 @@ function Gamemodal({ open, closeModal, getAvoided }) {
           Game Over
         </Typography>
         <Typography align="center" sx={{ mt: 2 }}>
-          Good game. You have avoided {getAvoided()} asteroids. Wanna try again?
+          Good game. You have collected {getPoints()} points. Wanna try again?
           Check back again, features are comming soon ...
         </Typography>
       </Box>

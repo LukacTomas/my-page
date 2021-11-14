@@ -8,7 +8,7 @@ import React, {
 import { Button, Typography } from "@mui/material";
 import { styled } from "@mui/system";
 import Rocket from "./Rocket";
-import Asteroids from "./Asteroids/newer";
+import { Asteroids } from "./Asteroids";
 import { Seo } from "Seo";
 import { useLanguage } from "Hooks";
 import { useData } from "./config";
@@ -82,6 +82,7 @@ export default function Game() {
 
   const afterColisionEffects = useCallback(() => {
     setAsteroids([getRandomAsteroid(500)]);
+    timerRef.current = 0;
   }, []);
 
   const checkAsteroidColision = useCallback(() => {
@@ -109,50 +110,38 @@ export default function Game() {
 
   useEffect(() => {
     if (gameWinRef.current === null || state === "prepared") return;
-    const gameWin = gameWinRef.current.getBoundingClientRect();
-
-    const xPos = [gameWin.x, gameWin.x + gameWin.width];
 
     gameInterval.current = setInterval(() => {
-      timerRef.current = timerRef.current + 1;
-
+      const gameWin = gameWinRef.current.getBoundingClientRect();
+      const xPos = [gameWin.x, gameWin.x + gameWin.width];
       setAsteroids((asteroids) => {
-        let newAsteroids = asteroids.map((asteroid) => {
+        timerRef.current = timerRef.current + 1;
+        const newAsteroids = asteroids.map((asteroid) => {
           if (asteroid.y > gameWin.bottom - asteroid.width) {
             points.current = points.current + 1;
             return getRandomAsteroid(xPos);
           }
-
-          const newAsteroid = { ...asteroid, y: asteroid.y + asteroid.speed };
-          return newAsteroid;
+          return { ...asteroid, y: asteroid.y + asteroid.speed };
         });
-        newAsteroids = newAsteroids.filter(
-          (asteroid) => asteroid !== undefined
-        );
 
+        if (newAsteroids.length >= maxNumberOfAsteroid) {
+          return newAsteroids;
+        }
+        if (timerRef.current > 10) {
+          timerRef.current = 0;
+          newAsteroids.push(getRandomAsteroid(xPos));
+        }
         return newAsteroids;
       });
 
       // check detection
       checkAsteroidColision();
-      if (timerRef.current < 10) return;
-
-      setAsteroids((asteroids) => {
-        if (asteroids.length > maxNumberOfAsteroid) {
-          return asteroids;
-        }
-        const newAsteroid = getRandomAsteroid(xPos);
-        const newAsteroids = [...asteroids, newAsteroid];
-
-        return newAsteroids;
-      });
-      timerRef.current = 0;
     }, 100);
 
     return () => {
       clearInterval(gameInterval.current);
     };
-  }, [state, gameWinRef, timerRef, gameInterval, checkAsteroidColision]);
+  }, [state, gameInterval, checkAsteroidColision]);
 
   useEffect(() => {
     if (state !== "playing") {
@@ -160,6 +149,7 @@ export default function Game() {
     }
     if (state === "prepared") {
       points.current = 0;
+      timerRef.current = 0;
     }
   }, [state, gameInterval]);
 
@@ -169,10 +159,7 @@ export default function Game() {
       <Button variant="contained" onClick={toggleGame}>
         {state === "playing" ? "PAUSE" : "PLAY"}
       </Button>
-      <Typography>
-        {" "}
-        You have points {Math.ceil(points.current)} asteroids
-      </Typography>
+      <Typography>You have points {Math.ceil(points.current)}</Typography>
 
       <Gamewindow ref={gameWinRef}>
         <Asteroids asteroids={asteroids} />
