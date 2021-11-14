@@ -9,12 +9,7 @@ const position = {
 };
 
 const MAX_KEY = 39;
-export const Rocket = ({
-  gameWinRef,
-  checkAsteroidColision,
-  rocketRef,
-  start,
-}) => {
+export const Rocket = ({ gameWinRef, rocketRef, start }) => {
   if (isBrowser) {
     window.rocketSpeed = 15;
   }
@@ -50,8 +45,7 @@ export const Rocket = ({
     }
 
     rocketRef.current.style.transform = `translate(${keyPressed.current.dx}px,${keyPressed.current.dy}px)`;
-    checkAsteroidColision(rocketPosition);
-  }, [gameWinRef, checkAsteroidColision, rocketRef, start]);
+  }, [gameWinRef, rocketRef, start]);
 
   const notAlowedKey = (key) => {
     const codes = [37, 39];

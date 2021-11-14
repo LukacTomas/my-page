@@ -5,7 +5,7 @@ import React, {
   createRef,
   useRef,
 } from "react";
-import { Button, Modal, Box, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { styled } from "@mui/system";
 import { Rocket } from "./Rocket";
 import { Asteroids } from "./Asteroids";
@@ -17,23 +17,13 @@ import {
   randomAsteroidXPosition,
   randomAsteroidSpeed,
   randomAsteroidWidth,
+  getRandomInt,
 } from "./Asteroids/utils";
 import stateMachine, { initialState } from "./_stateMachine";
-
-const modalStyle = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
+import Gamemodal from "./Modal";
 
 const Gamewindow = styled("div")(() => ({
-  //background: "rgba(0,0,0,0.5)",
+  background: "rgba(0,0,0,0.5)",
   margin: "0 auto",
   maxWidth: "800px",
   height: "75vh",
@@ -42,9 +32,9 @@ const Gamewindow = styled("div")(() => ({
 }));
 
 const getRandomAsteroid = (xPos) => ({
-  x: randomAsteroidXPosition(randomAsteroidWidth(80, 150), xPos),
+  x: randomAsteroidXPosition(xPos[0], xPos[1]),
   y: 0,
-  type: Math.random(),
+  type: getRandomInt(0, 2),
   width: randomAsteroidWidth(80, 150),
   speed: randomAsteroidSpeed(),
 });
@@ -64,10 +54,10 @@ export default function Game() {
   const lang = useLanguage();
   const data = useData(lang);
   const [state, setState] = useState(initialState);
-  const [asteroids, setAsteroids] = useState([getRandomAsteroid(500)]);
-  const [avoided, setAvoided] = useState(0);
+  const [asteroids, setAsteroids] = useState([getRandomAsteroid(100, 500)]);
 
   const gameWinRef = useRef();
+  const avoided = useRef(0);
   const rocketRef = useRef();
   const gameInterval = createRef();
   const timerRef = useRef(0);
@@ -81,6 +71,10 @@ export default function Game() {
     },
     [state]
   );
+
+  const closeModal = useCallback(() => {
+    transition({ type: "NEW" });
+  }, [transition]);
 
   const afterColisionEffects = useCallback(() => {
     setAsteroids([getRandomAsteroid(500)]);
@@ -112,7 +106,8 @@ export default function Game() {
   useEffect(() => {
     if (gameWinRef.current === null || state === "prepared") return;
     const gameWin = gameWinRef.current.getBoundingClientRect();
-    const gameWinLength = gameWin.width;
+
+    const xPos = [gameWin.x, gameWin.x + gameWin.width];
 
     gameInterval.current = setInterval(() => {
       timerRef.current = timerRef.current + 1;
@@ -120,8 +115,8 @@ export default function Game() {
       setAsteroids((asteroids) => {
         let newAsteroids = asteroids.map((asteroid) => {
           if (asteroid.y > gameWin.bottom - asteroid.width) {
-            setAvoided((num) => num + 1);
-            return getRandomAsteroid(gameWinLength + asteroid.width);
+            avoided.current = avoided.current + 1;
+            return getRandomAsteroid(xPos);
           }
 
           const newAsteroid = { ...asteroid, y: asteroid.y + asteroid.speed };
@@ -142,13 +137,13 @@ export default function Game() {
         if (asteroids.length > maxNumberOfAsteroid) {
           return asteroids;
         }
-        const newAsteroid = getRandomAsteroid(gameWinLength);
+        const newAsteroid = getRandomAsteroid(xPos);
         const newAsteroids = [...asteroids, newAsteroid];
 
         return newAsteroids;
       });
       timerRef.current = 0;
-    }, 50);
+    }, 100);
 
     return () => {
       clearInterval(gameInterval.current);
@@ -159,9 +154,8 @@ export default function Game() {
     if (state !== "playing") {
       clearInterval(gameInterval.current);
     }
-
     if (state === "prepared") {
-      setAvoided(0);
+      avoided.current = 0;
     }
   }, [state, gameInterval]);
 
@@ -171,7 +165,7 @@ export default function Game() {
       <Button variant="contained" onClick={toggleGame}>
         {state === "playing" ? "PAUSE" : "PLAY"}
       </Button>
-      <Typography> You have avoided {avoided} asteroids</Typography>
+      <Typography> You have avoided {avoided.current} asteroids</Typography>
 
       <Gamewindow ref={gameWinRef}>
         <Asteroids asteroids={asteroids} />
@@ -182,20 +176,11 @@ export default function Game() {
           start={state === "playing"}
         />
       </Gamewindow>
-      <Modal
+      <Gamemodal
         open={state === "colided"}
-        onClose={() => transition({ type: "NEW" })}
-      >
-        <Box style={modalStyle}>
-          <Typography align="center" variant="h6" component="h2">
-            Game Over
-          </Typography>
-          <Typography align="center" sx={{ mt: 2 }}>
-            Good game. You have avoided {avoided} asteroids. Wanna try again?
-            Check back again, features are comming soon ...
-          </Typography>
-        </Box>
-      </Modal>
+        avoided={avoided.current}
+        closeModal={closeModal}
+      />
     </>
   );
 }
