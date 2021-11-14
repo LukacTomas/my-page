@@ -23,7 +23,7 @@ import stateMachine, { initialState } from "./_stateMachine";
 import Gamemodal from "./Modal";
 
 const Gamewindow = styled("div")(() => ({
-  background: "rgba(0,0,0,0.5)",
+  //background: "rgba(0,0,0,0.5)",
   margin: "0 auto",
   maxWidth: "800px",
   height: "75vh",
@@ -159,7 +159,7 @@ export default function Game() {
       <Button variant="contained" onClick={toggleGame}>
         {state === "playing" ? "PAUSE" : "PLAY"}
       </Button>
-      <Typography>You have points {Math.ceil(points.current)}</Typography>
+      <Typography>You have {Math.ceil(points.current)} points.</Typography>
 
       <Gamewindow ref={gameWinRef}>
         <Asteroids asteroids={asteroids} />
