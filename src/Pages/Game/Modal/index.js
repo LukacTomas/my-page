@@ -11,8 +11,7 @@ const modalStyle = {
   boxShadow: 24,
   p: 4,
 };
-
-export default function Gamemodal({ open, closeModal, avoided }) {
+function Gamemodal({ open, closeModal, getAvoided }) {
   return (
     <Modal open={open} onClose={closeModal}>
       <Box style={modalStyle}>
@@ -20,10 +19,12 @@ export default function Gamemodal({ open, closeModal, avoided }) {
           Game Over
         </Typography>
         <Typography align="center" sx={{ mt: 2 }}>
-          Good game. You have avoided {avoided} asteroids. Wanna try again?
+          Good game. You have avoided {getAvoided()} asteroids. Wanna try again?
           Check back again, features are comming soon ...
         </Typography>
       </Box>
     </Modal>
   );
 }
+
+export default React.memo(Gamemodal);

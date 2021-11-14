@@ -54,7 +54,7 @@ export default function Game() {
   const lang = useLanguage();
   const data = useData(lang);
   const [state, setState] = useState(initialState);
-  const [asteroids, setAsteroids] = useState([getRandomAsteroid(100, 500)]);
+  const [asteroids, setAsteroids] = useState([getRandomAsteroid([100, 500])]);
 
   const gameWinRef = useRef();
   const avoided = useRef(0);
@@ -75,6 +75,10 @@ export default function Game() {
   const closeModal = useCallback(() => {
     transition({ type: "NEW" });
   }, [transition]);
+
+  const getAvoided = useCallback(() => {
+    return avoided.current;
+  }, []);
 
   const afterColisionEffects = useCallback(() => {
     setAsteroids([getRandomAsteroid(500)]);
@@ -178,7 +182,7 @@ export default function Game() {
       </Gamewindow>
       <Gamemodal
         open={state === "colided"}
-        avoided={avoided.current}
+        getAvoided={getAvoided}
         closeModal={closeModal}
       />
     </>

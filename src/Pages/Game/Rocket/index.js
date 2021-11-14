@@ -17,10 +17,8 @@ export const Rocket = ({ gameWinRef, rocketRef, start }) => {
   const keyPressed = useRef({
     keys: [],
     dx: 0,
-    dy: 0,
-    missileY: 0,
   });
-
+  console.log(keyPressed.current);
   const animateRocket = React.useCallback(() => {
     if (gameWinRef.current === null || !start) return;
 
@@ -44,7 +42,7 @@ export const Rocket = ({ gameWinRef, rocketRef, start }) => {
       keyPressed.current.dx += speed;
     }
 
-    rocketRef.current.style.transform = `translate(${keyPressed.current.dx}px,${keyPressed.current.dy}px)`;
+    rocketRef.current.style.transform = `translate(${keyPressed.current.dx}px,0px)`;
   }, [gameWinRef, rocketRef, start]);
 
   const notAlowedKey = (key) => {
