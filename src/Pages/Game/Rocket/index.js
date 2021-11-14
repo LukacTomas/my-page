@@ -11,7 +11,7 @@ const position = {
 const MAX_KEY = 39;
 export const Rocket = ({
   gameWinRef,
-  checkAsteroidDetection,
+  checkAsteroidColision,
   rocketRef,
   start,
 }) => {
@@ -50,8 +50,8 @@ export const Rocket = ({
     }
 
     rocketRef.current.style.transform = `translate(${keyPressed.current.dx}px,${keyPressed.current.dy}px)`;
-    checkAsteroidDetection(rocketPosition);
-  }, [gameWinRef, checkAsteroidDetection, rocketRef, start]);
+    checkAsteroidColision(rocketPosition);
+  }, [gameWinRef, checkAsteroidColision, rocketRef, start]);
 
   const notAlowedKey = (key) => {
     const codes = [37, 39];
@@ -64,9 +64,9 @@ export const Rocket = ({
 
   const handleKeyDown = React.useCallback(
     (event) => {
-      event.preventDefault();
       const { keyCode } = event;
       if (notAlowedKey(keyCode)) return;
+      event.preventDefault();
 
       // add key to current pressed keys
       keyPressed.current.keys[MAX_KEY - keyCode] = true;
@@ -78,9 +78,9 @@ export const Rocket = ({
 
   const handleKeyUp = React.useCallback(
     (event) => {
-      event.preventDefault();
       const { keyCode } = event;
       if (notAlowedKey(keyCode)) return;
+      event.preventDefault();
 
       // add key to current pressed keys
       keyPressed.current.keys[MAX_KEY - keyCode] = false;

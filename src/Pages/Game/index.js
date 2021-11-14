@@ -1,4 +1,10 @@
-import React from "react";
+import React, {
+  useState,
+  useCallback,
+  useEffect,
+  createRef,
+  useRef,
+} from "react";
 import { Button, Modal, Box, Typography } from "@mui/material";
 import { styled } from "@mui/system";
 import { Rocket } from "./Rocket";
@@ -6,13 +12,13 @@ import { Asteroids } from "./Asteroids";
 import { Seo } from "Seo";
 import { useLanguage } from "Hooks";
 import { useData } from "./config";
-
 import {
   maxNumberOfAsteroid,
   randomAsteroidXPosition,
   randomAsteroidSpeed,
   randomAsteroidWidth,
 } from "./Asteroids/utils";
+import stateMachine, { initialState } from "./_stateMachine";
 
 const modalStyle = {
   position: "absolute",
@@ -43,52 +49,74 @@ const getRandomAsteroid = (xPos) => ({
   speed: randomAsteroidSpeed(),
 });
 
+const isColision = (asteroid, rocket) => {
+  const isXin =
+    asteroid.x < rocket.x + rocket.width &&
+    asteroid.x + asteroid.width > rocket.x;
+  const isYin =
+    asteroid.y < rocket.y + rocket.height &&
+    asteroid.height + asteroid.y > rocket.y;
+  const colision = isXin && isYin;
+  return colision;
+};
+
 export default function Game() {
-  const [asteroids, setAsteroids] = React.useState([getRandomAsteroid(500)]);
-  const [avoided, setAvoided] = React.useState(0);
-  const [start, setStart] = React.useState(false);
-  const [colided, setColided] = React.useState(false);
-  const [timer, setTimer] = React.useState(0);
-  const gameWinRef = React.createRef();
-  const rocketRef = React.useRef();
-  const timerRef = React.createRef(0);
-  let moveOrRandomAsteroid = React.createRef();
   const lang = useLanguage();
   const data = useData(lang);
+  const [state, setState] = useState(initialState);
+  const [asteroids, setAsteroids] = useState([getRandomAsteroid(500)]);
+  const [avoided, setAvoided] = useState(0);
 
-  const checkAsteroidDetection = React.useCallback(() => {
+  const gameWinRef = useRef();
+  const rocketRef = useRef();
+  const gameInterval = createRef();
+  const timerRef = useRef(0);
+
+  // transition between machine states
+  const transition = useCallback(
+    (action) => {
+      const nextState = stateMachine[state][action.type];
+      if (!nextState) return;
+      setState(nextState);
+    },
+    [state]
+  );
+
+  const afterColisionEffects = useCallback(() => {
+    setAsteroids([getRandomAsteroid(500)]);
+  }, []);
+
+  const checkAsteroidColision = useCallback(() => {
     const rocket = rocketRef.current.getBoundingClientRect();
+    // TODO should do something with finding by Classname
+    // useRef should be problably used
     const asteroids = document.getElementsByClassName("asteroid");
     for (let asteroid of asteroids) {
       asteroid = asteroid.getBoundingClientRect();
-      const isXin =
-        asteroid.x < rocket.x + rocket.width &&
-        asteroid.x + asteroid.width > rocket.x;
-      const isYin =
-        asteroid.y < rocket.y + rocket.height &&
-        asteroid.height + asteroid.y > rocket.y;
-      const colision = isXin && isYin;
-      if (colision) {
-        setStart(false);
-        setColided(true);
-        setAsteroids([getRandomAsteroid(500)]);
+      if (isColision(asteroid, rocket)) {
+        transition({ type: "COLIDED" });
+        afterColisionEffects();
+        break;
       }
     }
-  }, []);
-  const startGame = () => {
-    setStart((running) => !running);
-    setColided(false);
-    setAvoided(0);
-  };
+  }, [transition, afterColisionEffects]);
 
-  React.useEffect(() => {
-    if (gameWinRef.current === null || !start) return;
+  const toggleGame = useCallback(() => {
+    if (state === "prepared") {
+      transition({ type: "START" });
+    } else {
+      transition({ type: "TOGGLE" });
+    }
+  }, [state, transition]);
 
+  useEffect(() => {
+    if (gameWinRef.current === null || state === "prepared") return;
     const gameWin = gameWinRef.current.getBoundingClientRect();
     const gameWinLength = gameWin.width;
 
-    moveOrRandomAsteroid.current = setInterval(() => {
-      setTimer((time) => time + 1);
+    gameInterval.current = setInterval(() => {
+      timerRef.current = timerRef.current + 1;
+
       setAsteroids((asteroids) => {
         let newAsteroids = asteroids.map((asteroid) => {
           if (asteroid.y > gameWin.bottom - asteroid.width) {
@@ -107,8 +135,8 @@ export default function Game() {
       });
 
       // check detection
-      checkAsteroidDetection();
-      if (timer < 10) return;
+      checkAsteroidColision();
+      if (timerRef.current < 10) return;
 
       setAsteroids((asteroids) => {
         if (asteroids.length > maxNumberOfAsteroid) {
@@ -119,34 +147,29 @@ export default function Game() {
 
         return newAsteroids;
       });
-      setTimer(0);
+      timerRef.current = 0;
     }, 50);
 
     return () => {
-      clearInterval(moveOrRandomAsteroid.current);
+      clearInterval(gameInterval.current);
     };
-  }, [
-    start,
-    setAsteroids,
-    gameWinRef,
-    timerRef,
-    timer,
-    moveOrRandomAsteroid,
-    checkAsteroidDetection,
-    setAvoided,
-  ]);
+  }, [state, gameWinRef, timerRef, gameInterval, checkAsteroidColision]);
 
-  React.useEffect(() => {
-    if (start === false) {
-      clearInterval(moveOrRandomAsteroid.current);
+  useEffect(() => {
+    if (state !== "playing") {
+      clearInterval(gameInterval.current);
     }
-  }, [start, moveOrRandomAsteroid]);
+
+    if (state === "prepared") {
+      setAvoided(0);
+    }
+  }, [state, gameInterval]);
 
   return (
     <>
       <Seo seo={data.helmet} />
-      <Button variant="contained" onClick={startGame}>
-        {!start ? "Start Game" : "Pause Game"}
+      <Button variant="contained" onClick={toggleGame}>
+        {state === "playing" ? "PAUSE" : "PLAY"}
       </Button>
       <Typography> You have avoided {avoided} asteroids</Typography>
 
@@ -155,15 +178,13 @@ export default function Game() {
         <Rocket
           gameWinRef={gameWinRef}
           rocketRef={rocketRef}
-          checkAsteroidDetection={checkAsteroidDetection}
-          start={start}
+          checkAsteroidColision={checkAsteroidColision}
+          start={state === "playing"}
         />
       </Gamewindow>
       <Modal
-        open={colided}
-        onClose={() => setColided(false)}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+        open={state === "colided"}
+        onClose={() => transition({ type: "NEW" })}
       >
         <Box style={modalStyle}>
           <Typography align="center" variant="h6" component="h2">
