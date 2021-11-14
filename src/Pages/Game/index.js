@@ -3,6 +3,10 @@ import { Button, Modal, Box, Typography } from "@mui/material";
 import { styled } from "@mui/system";
 import { Rocket } from "./Rocket";
 import { Asteroids } from "./Asteroids";
+import { Seo } from "Seo";
+import { useLanguage } from "Hooks";
+import { useData } from "./config";
+
 import {
   maxNumberOfAsteroid,
   randomAsteroidXPosition,
@@ -49,6 +53,8 @@ export default function Game() {
   const rocketRef = React.useRef();
   const timerRef = React.createRef(0);
   let moveOrRandomAsteroid = React.createRef();
+  const lang = useLanguage();
+  const data = useData(lang);
 
   const checkAsteroidDetection = React.useCallback(() => {
     const rocket = rocketRef.current.getBoundingClientRect();
@@ -138,6 +144,7 @@ export default function Game() {
 
   return (
     <>
+      <Seo seo={data.helmet} />
       <Button variant="contained" onClick={startGame}>
         {!start ? "Start Game" : "Pause Game"}
       </Button>
