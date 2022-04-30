@@ -4,7 +4,6 @@ import { styled } from "@mui/system";
 import { Link } from "@mui/material";
 import badge from "Static/python-badge.png";
 import Loading from "Shared/Loading";
-//import { Timeline } from "./Timeline";
 const Timeline = React.lazy(() => import("./Timeline"));
 
 const MyLink = styled(Link)({

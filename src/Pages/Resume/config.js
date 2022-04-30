@@ -7,11 +7,23 @@ const data = {
     },
     title: "🚀Tomáš Lukáč",
     jobs: [
+        {
+          title: "Software Engineer",
+          date:{
+            from: 2022,
+            to: "súčasnosť"
+          },
+          description: "Programovanie React, Java",
+          supervisor: {
+            name: "Siemens Healthineers",
+            location: "Bratislava"
+          }
+        },
       {
         title: "Učiteľ",
         date: {
           from: 2012,
-          to: "súčasnosť",
+          to: 2022,
         },
         description:
           "Učiteľ na čiastočný úväzok pre odborné predmety ako elektronika, programovanie, pneumatika, hydraulika. Plný úväzok od septembra 2020",
@@ -60,10 +72,22 @@ const data = {
     title: "Tomas Lukac",
     jobs: [
       {
+        title: "Software Engineer",
+        date:{
+          from: 2022,
+          to: "present"
+        },
+        description: "Programming in React, Java",
+        supervisor: {
+          name: "Siemens Healthineers",
+          location: "Bratislava"
+        }
+      },
+      {
         title: "Teacher",
         date: {
           from: 2012,
-          to: "present",
+          to: 2022,
         },
         description:
           "Part-time teacher of vocational subject i.e.: electronics, programming, automation, mechatronics. Full time-teacher from 2020",
